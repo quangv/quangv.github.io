@@ -2,8 +2,9 @@
 <html>
   <head>
     <title>Quangv - GitPage</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+
 
     <style>
       ul {
@@ -16,14 +17,112 @@
         display: inline;
         padding: 0.5em;
       }
+
+      h1 {
+        position: relative;
+      }
+
+      h1.notready small {
+        visibility: hidden;
+      }
+
+      small {
+        position: absolute;
+        left: 340px;
+        top: 0.5em;
+      }
+
+      small span span{
+        opacity: 0;
+        scale: 0.1;
+      }
+
+      small span {
+        display: inline-block;
+      }
+      small .fa {
+        padding-left: 0.15em;
+      }
     </style>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lettering.js/0.7.0/jquery.lettering.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+    <script>
+      $(function(){
+
+        $('small').lettering('words').children().lettering();
+
+        // Add icons
+
+        var icons = [
+          'thumbs-o-up',
+          'thumb-tack',
+          'arrow-up',
+          'arrow-left',
+          'arrow-circle-o-left',
+          'arrow-circle-o-up',
+          'arrow-circle-up',
+          'arrow-circle-left',
+          'long-arrow-left',
+          'check',
+          'check-circle-o',
+          'check-circle',
+          'check-square-o',
+          'calendar-check-o'
+        ];
+
+        $('small.hasIcon').each(function(){
+          $(this).append('<span><span class="fa fa-' + icons[Math.floor(Math.random() * icons.length)] + '"></span></span>');
+        });
+
+        $('h1').removeClass('notready');
+
+        var timeline = new TimelineMax({repeat: -1});
+
+        $('small').each(function(index){
+          var delay = (index ? '-=1.2' : '+=0')
+          var $this = $(this).find('span span');
+          timeline.add(TweenMax.staggerTo($this, 1.5, {opacity: 1, scale:1}, 0.05), delay);
+          timeline.add(TweenMax.staggerTo($this, 0.5, {scale:0}, 0.1));
+        });
+
+      });
+    </script>
 
   </head>
   <body>
 
     <div class="container">
       <div class="page-header">
-        <h1>Front-End Engineer <small>Web Apps Developer</small></h1>
+        <h1 class="notready">Front-End Engineer
+          <small class="hasIcon">Web Apps Developer</small>
+          <small>Husband & Father</small>
+          <small class="hasIcon">Coffee-Script</small>
+          <small class="hasIcon">React.js</small>
+          <small class="hasIcon">JavaScript</small>
+          <small class="hasIcon">Backbone.js</small>
+          <small class="hasIcon">Bootstrap</small>
+          <small class="hasIcon">HTML5</small>
+          <small class="hasIcon">CSS3</small>
+          <small class="hasIcon">ES2015</small>
+          <small class="hasIcon">SASS</small>
+          <small class="hasIcon">Python</small>
+          <small class="hasIcon">Django</small>
+          <small class="hasIcon">Underscore.js</small>
+          <small class="hasIcon">Moment.js</small>
+          <small class="hasIcon">Backbone Marionette</small>
+          <small class="hasIcon">Grunt.js</small>
+          <small class="hasIcon">Browserify</small>
+          <small class="hasIcon">Webpack</small>
+          <small class="hasIcon">Mocha.js</small>
+          <small class="hasIcon">Ruby on Rails</small>
+          <small class="hasIcon">Spine.js</small>
+          <small class="hasIcon">Knockout.js</small>
+          <small class="hasIcon">PHP</small>
+          <small class="hasIcon">Wordpress</small>
+        </h1>
       </div>
 
       <a href="http://boldapps.io" class="btn btn-primary">Consulting</a>
